@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:sec="http://www.springframework.org/security/tags">
+
+<body>
+    <ui:composition template="/templates/template.xhtml">
+
+        <ui:define name="title">RichFaces Sample</ui:define>
+
+        <ui:define name="body">
+            <div class="page-header">
+                <h1>Events</h1>
+            </div>
+            <div class="row">
+                <div class="span4">
+                    <h:panelGroup id="output">
+                        <h:outputText class="alert alert-info" value="Event - #{eventBean.event}"
+                            rendered="#{not empty eventBean.event}" />
+                    </h:panelGroup>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span3">
+                    <h:form prependId="false">
+
+                        <h:outputLabel value="View Event with ID:" for="idInput">
+                            <a href="#" class="pull-right" rel="tooltip" title="Try entering an Event ID of 0, 1, or 2 to see the corresponding event.">?</a>
+                        </h:outputLabel>
+                        <h:inputText id="idInput" value="#{eventBean.id}">
+                            <a4j:ajax event="keyup" render="output" />
+                        </h:inputText>
+                    </h:form>
+                </div>
+                <div class="span8">
+                </div>
+            </div>
+            <div>
+                <sec:authorize ifAnyGranted="ROLE_ADMIN">
+                    This is an admin
+                </sec:authorize>
+            </div>
+        </ui:define>
+    </ui:composition>
+</body>
+</html>

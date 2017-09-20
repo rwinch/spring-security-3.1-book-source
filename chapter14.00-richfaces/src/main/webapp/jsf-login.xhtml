@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:a4j="http://richfaces.org/a4j">
+
+    <body>
+        <ui:composition template="/templates/template.xhtml">
+
+            <ui:define name="title">Login</ui:define>
+
+            <ui:define name="body">
+                <h:message for="login" styleClass="alert alert-error"/>
+                <div>
+                    <h:form id="login" method="post">
+                        <h:outputLabel for="username" value="Username"/>
+                        <h:inputText id="username" value="#{loginBean.username}"/>
+                        <h:outputLabel for="password" value="Username"/>
+                        <h:inputSecret id="password" value="#{loginBean.password}"/>
+                        <div class="form-actions">
+                            <h:commandButton value="Login" class="btn" action="#{loginBean.login}" />
+                        </div>
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

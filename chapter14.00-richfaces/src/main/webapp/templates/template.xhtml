@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:sec="http://www.springframework.org/security/tags">
+
+    <h:head>
+        <title>myCalendar - Richfaces</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link href="resources/css/bootstrap.css" rel="stylesheet" />
+    </h:head>
+
+    <h:body>
+        <div class="container">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <a class="brand" href="#">
+                       myCalendar - Richfaces
+                    </a>
+                    <div class="nav-collapse pull-right">
+                        <p class="navbar-text pull-left">
+                            <h:outputText value="Welcome, #{facesContext.externalContext.remoteUser}"
+                                rendered="#{not empty facesContext.externalContext.remoteUser}"/>
+                        </p>
+                        <ul class="nav">
+                            <li>
+                                <h:outputLink value="${request.contextPath}/j_spring_security_logout"
+                                    rendered="#{sec:isAllowed('/j_spring_security_logout','GET')}">
+                                    <f:verbatim>Logout</f:verbatim>
+                                </h:outputLink>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <ui:insert name="body">Default content</ui:insert>
+        </div>
+        <script type="text/javascript">
+            jsf.ajax.addOnError(handleError);
+
+            function handleError(data) {
+                if(data.responseCode == 400) {
+                     window.location = "${request.contextPath}"
+                }
+            }
+        </script>
+    </h:body>
+</html>

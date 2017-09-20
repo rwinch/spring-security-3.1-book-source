@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="ldapServer"
+            class="org.springframework.security.ldap.DefaultSpringSecurityContextSource">
+        <constructor-arg value="ldap://localhost:33389/dc=jbcpcalendar,dc=com"/>
+
+        <property name="userDn" value="uid=admin,ou=system"/>
+        <property name="password" value="secret"/>
+    </bean>
+
+    <bean id="ldapAuthenticationProvider"
+            class="org.springframework.security.ldap.authentication.LdapAuthenticationProvider">
+        <constructor-arg ref="ldapBindAuthenticator"/>
+        <constructor-arg ref="ldapAuthoritiesPopulator"/>
+        <property name="userDetailsContextMapper" ref="ldapUserDetailsContextMapper"/>
+    </bean>
+
+    <bean id="ldapBindAuthenticator"
+            class="org.springframework.security.ldap.authentication.BindAuthenticator">
+        <constructor-arg ref="ldapServer"/>
+        <property name="userSearch" ref="ldapSearch"/>
+    </bean>
+
+    <bean id="ldapSearch"
+            class="org.springframework.security.ldap.search.FilterBasedLdapUserSearch">
+        <constructor-arg value=""/> <!-- use-search-base -->
+        <constructor-arg value="(uid={0})"/> <!-- user-search-filter -->
+        <constructor-arg ref="ldapServer"/>
+    </bean>
+
+    <bean id="ldapAuthoritiesPopulator"
+            class="org.springframework.security.ldap.userdetails.DefaultLdapAuthoritiesPopulator">
+        <constructor-arg ref="ldapServer"/>
+        <constructor-arg value="ou=Groups"/>
+        <property name="groupSearchFilter" value="(uniqueMember={0})"/>
+    </bean>
+
+    <bean id="ldapUserDetailsContextMapper"
+            class="org.springframework.security.ldap.userdetails.InetOrgPersonContextMapper"/>
+</beans>

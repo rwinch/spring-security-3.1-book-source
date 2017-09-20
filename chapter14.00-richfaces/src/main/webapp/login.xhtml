@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:a4j="http://richfaces.org/a4j">
+
+    <body>
+        <ui:composition template="/templates/template.xhtml">
+
+            <ui:define name="title">Login</ui:define>
+
+            <ui:define name="body">
+                <div>
+                    <c:if test="${param.error != null}">
+                        <div class="alert alert-error">
+                            Failed to login.
+                            <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
+                              Reason: <h:outputText value="#{sessionScope.SPRING_SECURITY_LAST_EXCEPTION.message}"/>
+                            </c:if>
+                        </div>
+                    </c:if>
+                    <c:if test="${param.logout != null}">
+                        <div class="alert alert-success">
+                            You have been logged out.
+                        </div>
+                    </c:if>
+                    <form action="${request.contextPath}/j_spring_security_check" method="post">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="j_username"/>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="j_password"/>
+                        <div class="form-actions">
+                            <input id="submit" class="btn" name="submit" type="submit" value="Login"/>
+                        </div>
+                    </form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

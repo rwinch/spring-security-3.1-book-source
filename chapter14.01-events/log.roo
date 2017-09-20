@@ -1,0 +1,30 @@
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-05-29 23:09:56
+project --topLevelPackage com.packtpub.springsecurity.events
+jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY
+entity jpa --class ~.server.domain.Event --testAutomatically
+field string --fieldName description
+web mvc setup
+security setup
+web gwt setup
+web gwt all --proxyPackage ~.client.proxy --requestPackage ~.client.request
+exit
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-05-29 23:10:21
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-05-29 23:11:42
+// Spring Roo 1.1.4.RELEASE [rev f787ce7] log opened at 2012-06-01 12:18:52
+// Spring Roo 1.1.4.RELEASE [rev f787ce7] log closed at 2012-06-01 13:24:32
+// Spring Roo 1.1.4.RELEASE [rev f787ce7] log opened at 2012-06-01 13:30:38
+// Spring Roo 1.1.4.RELEASE [rev f787ce7] log closed at 2012-06-01 13:45:59
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-06-01 13:48:12
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-06-02 15:05:23
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-06-02 15:06:14
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-06-02 15:09:13
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-06-02 15:10:13
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-06-02 17:06:14
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-06-02 23:51:34
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-06-03 00:17:56
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-06-03 00:19:04
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-18 19:03:55
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-12-18 19:37:41
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-18 19:38:44
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-12-18 19:40:06
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-18 19:41:14

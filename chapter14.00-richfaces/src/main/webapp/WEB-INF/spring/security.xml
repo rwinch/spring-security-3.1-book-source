@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns:b="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.springframework.org/schema/security"
+    xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <global-method-security proxy-target-class="true"
+        pre-post-annotations="enabled"/>
+
+    <http security="none" pattern="/resources/**"/>
+    <http security="none" pattern="/org.richfaces.resources/**"/>
+    <http auto-config="true"
+        use-expressions="true"
+        entry-point-ref="entryPoint">
+        <intercept-url pattern="/jsf-login.jsf" access="permitAll"/>
+        <intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
+        <form-login login-page="/jsf-login.jsf"
+                authentication-failure-url="/jsf-login.jsf"
+                default-target-url="/"
+                always-use-default-target="true"/>
+        <expression-handler ref="jsfWebExpressionHandler"/>
+    </http>
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider>
+            <user-service>
+                <user name="user1@example.com"
+                    password="user1"
+                    authorities="ROLE_USER"/>
+                <user name="&lt;b&gt;hi&lt;/b&gt;"
+                    password="user1"
+                    authorities="ROLE_USER"/>
+                <user name="admin1@example.com"
+                    password="admin1"
+                    authorities="ROLE_USER,ROLE_ADMIN"/>
+                <user name="user2@example.com"
+                    password="user2"
+                    authorities="ROLE_USER"/>
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+    <b:bean id="jsfWebExpressionHandler" class="com.packtpub.springsecurity.JsfDefaultWebSecurityExpressionhandler"/>
+</b:beans>

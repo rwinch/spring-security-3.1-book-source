@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+    <bean id="unanimousBased"
+            class="org.springframework.security.access.vote.UnanimousBased">
+        <property name="decisionVoters">
+            <list>
+                <ref bean="roleVoter" />
+                <ref bean="authenticatedVoter" />
+            </list>
+        </property>
+    </bean>
+    <bean id="roleVoter"
+            class="org.springframework.security.access.vote.RoleVoter"/>
+    <bean id="authenticatedVoter"
+            class="org.springframework.security.access.vote.AuthenticatedVoter"/>
+</beans>
